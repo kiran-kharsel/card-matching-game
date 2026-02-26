@@ -57,6 +57,11 @@ body {
     transform: rotateY(180deg);
 }
 
+.card.disabled {
+  pointer-events: none;
+  
+}
+
 .card-front,
 .card-back {
   position: absolute;

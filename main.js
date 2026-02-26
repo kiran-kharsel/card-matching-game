@@ -102,12 +102,13 @@ function compareCard(firstCardId, secondCrdId){
     if(firstCardId === secondCrdId){
     // map array to remove class list
     cardContainer.querySelectorAll('.flipped').forEach((card) =>{
+      card.classList.add('disabled');
       card.classList.add('flipped');
     })
     // increae score
   }else{
     // fliped back all cards
-    cardContainer.querySelectorAll('.flipped').forEach((card) =>{
+    cardContainer.querySelectorAll('.flipped:not(.disabled)').forEach((card) =>{
       card.classList.remove('flipped');
     })
   }
