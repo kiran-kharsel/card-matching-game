@@ -1,11 +1,9 @@
-// dom element
+// dom elements
 const cardContainer = document.querySelector(".cards-container");
 const scoreElem = document.querySelector('.score')
 
-// 
-let firstCardId;
-let secondCrdId;
-let flag = false;
+// game state
+let selectedCards = [];
 let score = 0;
 
 // card array
@@ -42,10 +40,12 @@ const cards = [
   },
 ];
 
-// double each card
+// double and shuffle
 const doubledCardArray = [...cards, ...cards];
+const shuffledCards = shuffle(doubledCardArray);
 
-// shuffle card randomly
+
+// shuffle helper
 function shuffle(array) {
   let currentIndex = array.length;
 
@@ -63,44 +63,65 @@ function shuffle(array) {
   return array;
 }
 
-const shuffledCards = shuffle(doubledCardArray);
 
-// create each card
+
+// create catds
 shuffledCards.forEach((card) => {
   let cardDiv = document.createElement("div");
   cardDiv.classList.add("card");
+  cardDiv.dataset.id = card.id; // store id for comparison
+
   cardDiv.innerHTML = `
     <div class="card-front">front side</div>
     <div class="card-back">
-        <img src=${card.image} alt="">
+        <img src=${card.image} alt="${card.name}">
     </div>
     `;
   cardContainer.appendChild(cardDiv);
+  // Flip handler
+  cardDiv.addEventListener("click", () => handleFlip(cardDiv));
 
-  // flip card
-  cardDiv.addEventListener("click", function () {
-    console.log("card");
-    cardDiv.classList.toggle("flipped");
+  // // flip card
+  // cardDiv.addEventListener("click", function () {
+  //   console.log("card");
+  //   cardDiv.classList.toggle("flipped");
 
-    // 
-    if(flag){
-      secondCrdId = card.id
-      flag = false;
-      // compare function
-      compareCard(firstCardId, secondCrdId)
-    }else{
-      firstCardId = card.id;
-      flag = true
-    }
-  });
+  //   // 
+  //   if(flag){
+  //     secondCardId = card.id
+  //     flag = false;
+  //     // compare function
+  //     compareCard(firstCardId, secondCardId)
+  //   }else{
+  //     firstCardId = card.id;
+  //     flag = true
+  //   }
+  // });
 });
 
 
-function compareCard(firstCardId, secondCrdId){
+// Flip logic
+function handleFlip(cardDiv) {
+  // Ignore if already flipped or disabled
+  if (cardDiv.classList.contains("flipped") || cardDiv.classList.contains("disabled")) {
+    return;
+  }
+
+  cardDiv.classList.add("flipped");
+  selectedCards.push(cardDiv);
+
+  if (selectedCards.length === 2) {
+    compareCards();
+  }
+}
+
+
+
+function compareCard(firstCardId, secondCardId){
   
 
   setTimeout(()=>{
-    if(firstCardId === secondCrdId){
+    if(firstCardId === secondCardId){
     // map array to remove class list
     cardContainer.querySelectorAll('.flipped').forEach((card) =>{
       card.classList.add('disabled');
