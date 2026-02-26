@@ -1,11 +1,12 @@
 // dom element
 const cardContainer = document.querySelector(".cards-container");
-
+const scoreElem = document.querySelector('.score')
 
 // 
 let firstCardId;
 let secondCrdId;
 let flag = false;
+let score = 0;
 
 // card array
 const cards = [
@@ -106,6 +107,8 @@ function compareCard(firstCardId, secondCrdId){
       card.classList.add('flipped');
     })
     // increae score
+    score++;
+    scoreElem.innerHTML = `score: ${score}`
   }else{
     // fliped back all cards
     cardContainer.querySelectorAll('.flipped:not(.disabled)').forEach((card) =>{
