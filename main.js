@@ -2,6 +2,9 @@
 const cardContainer = document.querySelector(".cards-container");
 const scoreElem = document.querySelector('.score')
 
+// card background image
+const cardBg = './assets/card-bg.png'
+
 // game state
 let selectedCards = [];
 let score = 0;
@@ -72,7 +75,9 @@ shuffledCards.forEach((card) => {
   cardDiv.dataset.id = card.id; // store id for comparison
 
   cardDiv.innerHTML = `
-    <div class="card-front">front side</div>
+    <div class="card-front">
+      <img src=${cardBg} alt="${card.name}">
+    </div>
     <div class="card-back">
         <img src=${card.image} alt="${card.name}">
     </div>
@@ -81,22 +86,6 @@ shuffledCards.forEach((card) => {
   // Flip handler
   cardDiv.addEventListener("click", () => handleFlip(cardDiv));
 
-  // // flip card
-  // cardDiv.addEventListener("click", function () {
-  //   console.log("card");
-  //   cardDiv.classList.toggle("flipped");
-
-  //   // 
-  //   if(flag){
-  //     secondCardId = card.id
-  //     flag = false;
-  //     // compare function
-  //     compareCard(firstCardId, secondCardId)
-  //   }else{
-  //     firstCardId = card.id;
-  //     flag = true
-  //   }
-  // });
 });
 
 
