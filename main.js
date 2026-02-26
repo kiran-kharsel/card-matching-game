@@ -116,28 +116,29 @@ function handleFlip(cardDiv) {
 }
 
 
+// Compare logic
+function compareCards() {
+  const [firstCard, secondCard] = selectedCards;
+  const firstId = firstCard.dataset.id;
+  const secondId = secondCard.dataset.id;
 
-function compareCard(firstCardId, secondCardId){
-  
+  setTimeout(() => {
+    if (firstId === secondId) {
+      // Match found
+      selectedCards.forEach((card) => card.classList.add("disabled"));
+      score++;
+      scoreElem.textContent = `Score: ${score}`;
+    } else {
+      // Flip back unmatched cards
+      selectedCards.forEach((card) => card.classList.remove("flipped"));
+    }
+    selectedCards = []; // reset selection
+  }, 1000);
+}
 
-  setTimeout(()=>{
-    if(firstCardId === secondCardId){
-    // map array to remove class list
-    cardContainer.querySelectorAll('.flipped').forEach((card) =>{
-      card.classList.add('disabled');
-      card.classList.add('flipped');
-    })
-    // increae score
-    score++;
-    scoreElem.innerHTML = `score: ${score}`
-  }else{
-    // fliped back all cards
-    cardContainer.querySelectorAll('.flipped:not(.disabled)').forEach((card) =>{
-      card.classList.remove('flipped');
-    })
-  }
-  }, 1000)
-};
+
+
+
 
 
 
