@@ -1,6 +1,12 @@
 // dom element
 const cardContainer = document.querySelector(".cards-container");
 
+
+// 
+let firstCardId;
+let secondCrdId;
+let flag = false;
+
 // card array
 const cards = [
   {
@@ -74,7 +80,39 @@ shuffledCards.forEach((card) => {
   cardDiv.addEventListener("click", function () {
     console.log("card");
     cardDiv.classList.toggle("flipped");
+
+    // 
+    if(flag){
+      secondCrdId = card.id
+      flag = false;
+      // compare function
+      compareCard(firstCardId, secondCrdId)
+    }else{
+      firstCardId = card.id;
+      flag = true
+    }
   });
 });
 
-const card = document.querySelector(".card");
+
+function compareCard(firstCardId, secondCrdId){
+  
+
+  setTimeout(()=>{
+    if(firstCardId === secondCrdId){
+    // map array to remove class list
+    cardContainer.querySelectorAll('.flipped').forEach((card) =>{
+      card.classList.add('flipped');
+    })
+    // increae score
+  }else{
+    // fliped back all cards
+    cardContainer.querySelectorAll('.flipped').forEach((card) =>{
+      card.classList.remove('flipped');
+    })
+  }
+  }, 1000)
+};
+
+
+
