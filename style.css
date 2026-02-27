@@ -10,9 +10,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
+  font-family: cursive;
   background-image: url("./assets/background.jpeg");
   background-position: center;
   background-size: cover;
@@ -54,6 +52,7 @@ body {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   border-radius: 10px;
+  border: 1.5px solid black;
 }
 
 .card.flipped {
