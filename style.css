@@ -17,6 +17,19 @@ body {
   background-repeat: no-repeat;
 }
 
+/* Basic styling for the dialog */
+dialog {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the backdrop that appears behind the modal */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+}
+
 .container {
   width: 800px;
   /* background-color: white; */
