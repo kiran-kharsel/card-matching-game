@@ -1,6 +1,10 @@
 // dom elements
 const cardContainer = document.querySelector(".cards-container");
 const scoreElem = document.querySelector('.score')
+const dialog = document.getElementById('myDialog');
+const showButton = document.getElementById('showDialogButton');
+const closeButton = document.getElementById('closeDialogButton');
+
 
 // card background image
 const cardBg = './assets/card-bg.png'
@@ -127,7 +131,10 @@ function compareCards() {
 
 
 
+// show modal on page load
+function showModal(){
+  dialog.showModal();
+}
 
-
-
+showModal();
 
